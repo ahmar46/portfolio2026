@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyAhmar - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-pink: #FF006E;
+            --neon-blue: #00F5FF;
+            --neon-purple: #8B00FF;
+            --neon-green: #39FF14;
+            --dark-bg: #0a0015;
+            --darker-bg: #050008;
+            --card-bg: #1a0b2e;
+            --text-primary: #ffffff;
+            --text-glow: #FF006E;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Retro Grid Background */
+        .retro-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 0, 110, .05) 25%, rgba(255, 0, 110, .05) 26%, transparent 27%, transparent 74%, rgba(255, 0, 110, .05) 75%, rgba(255, 0, 110, .05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 0, 110, .05) 25%, rgba(255, 0, 110, .05) 26%, transparent 27%, transparent 74%, rgba(255, 0, 110, .05) 75%, rgba(255, 0, 110, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            z-index: -2;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Pixel Art Cursor Trail */
+        .cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--neon-pink);
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 20px var(--neon-pink);
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; transform: scale(2); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 0, 21, 0.95);
+            border-bottom: 3px solid var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            animation: glitchNav 5s infinite;
+        }
+
+        @keyframes glitchNav {
+            0%, 90%, 100% { transform: translateX(0); }
+            92% { transform: translateX(-2px); }
+            94% { transform: translateX(2px); }
+            96% { transform: translateX(-2px); }
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 30px var(--neon-pink);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+            50% { text-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink), 0 0 40px var(--neon-pink); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 0.7rem;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px var(--neon-blue);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            transform: scale(1.1);
+        }
+
+        .nav-links a::before {
+            content: '> ';
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 5% 0;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 30px var(--neon-pink);
+            animation: glitch 3s infinite;
+            line-height: 1.4;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); color: var(--neon-blue); }
+            94% { transform: translate(2px, -2px); color: var(--neon-green); }
+            96% { transform: translate(-2px, -2px); color: var(--neon-pink); }
+        }
+
+        .hero-text .subtitle {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--neon-green);
+            margin: 2rem 0;
+            text-shadow: 0 0 5px var(--neon-green);
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            font-family: 'Press Start 2P', cursive;
+            padding: 1rem 2rem;
+            border: 3px solid var(--neon-pink);
+            background: transparent;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 
+                0 0 10px var(--neon-pink),
+                inset 0 0 10px rgba(255, 0, 110, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-pink);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+        }
+
+        .btn-secondary {
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            box-shadow: 
+                0 0 10px var(--neon-blue),
+                inset 0 0 10px rgba(0, 245, 255, 0.2);
+        }
+
+        .btn-secondary::before {
+            background: var(--neon-blue);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue);
+        }
+
+        /* Arcade Machine */
+        .arcade-machine {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .arcade-screen {
+            background: var(--card-bg);
+            border: 5px solid var(--neon-purple);
+            padding: 2rem;
+            box-shadow: 
+                0 0 30px var(--neon-purple),
+                inset 0 0 30px rgba(139, 0, 255, 0.2);
+            position: relative;
+            animation: screenFlicker 0.1s infinite;
+        }
+
+        @keyframes screenFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        .screen-content h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
+            margin-bottom: 2rem;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-box {
+            background: var(--darker-bg);
+            border: 2px solid var(--neon-green);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(57, 255, 20, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: scanline 3s infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%) rotate(45deg); }
+            100% { transform: translateY(100%) rotate(45deg); }
+        }
+
+        .skill-box:hover {
+            transform: scale(1.05);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .skill-box .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 0 10px var(--neon-green));
+        }
+
+        .skill-box h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-pink);
+            position: relative;
+        }
+
+        h2::before {
+            content: '[ ';
+            color: var(--neon-blue);
+        }
+
+        h2::after {
+            content: ' ]';
+            color: var(--neon-blue);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 3px solid var(--neon-blue);
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 3px solid var(--neon-blue);
+            filter: drop-shadow(0 0 20px var(--neon-pink));
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .project-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--neon-blue);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            font-family: 'Press Start 2P', cursive;
+            background: var(--darker-bg);
+            border: 2px solid var(--neon-purple);
+            padding: 0.5rem 1rem;
+            font-size: 0.6rem;
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--neon-pink), var(--neon-blue), var(--neon-green));
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            padding: 2rem;
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--neon-pink);
+            animation: loadingBar 2s infinite;
+        }
+
+        @keyframes loadingBar {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        .timeline-content h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content .date {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-blue);
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--neon-green);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--neon-pink);
+            border: 4px solid var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-pink);
+            animation: pulse 2s infinite;
+        }
+
+        /* Testimonials */
+        .testimonials-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonials-slider::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .testimonials-slider::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+            border: 2px solid var(--neon-purple);
+        }
+
+        .testimonials-slider::-webkit-scrollbar-thumb {
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: var(--card-bg);
+            padding: 2rem;
+            border: 3px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(139, 0, 255, 0.3);
+            scroll-snap-align: start;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .testimonial-card::after {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 5rem;
+            color: var(--neon-pink);
+            opacity: 0.3;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .testimonial-header h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .testimonial-header p {
+            font-size: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .stars {
+            color: var(--neon-pink);
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .testimonial-card > p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 3px solid var(--neon-green);
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .contact-item h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .contact-item p {
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 3px solid var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+        }
+
+        footer p {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Game Over Effect */
+        .game-over {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Dino Game Modal */
+        .game-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-modal.active {
+            display: flex;
+        }
+
+        .game-container {
+            background: var(--card-bg);
+            border: 5px solid var(--neon-pink);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 50px var(--neon-pink);
+            position: relative;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .game-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .close-game {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--neon-blue);
+            background: transparent;
+            border: 3px solid var(--neon-blue);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-game:hover {
+            background: var(--neon-blue);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: 400px;
+            background: var(--darker-bg);
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        .game-score {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .game-instructions {
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Mobile Game Button */
+        .mobile-game-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            border: 4px solid var(--neon-blue);
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 
+                0 0 30px var(--neon-pink),
+                0 0 50px rgba(255, 0, 110, 0.5);
+            animation: floatBtn 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+
+        .mobile-game-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 
+                0 0 40px var(--neon-pink),
+                0 0 70px rgba(255, 0, 110, 0.7);
+        }
+
+        .mobile-game-btn:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes floatBtn {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @media (max-width: 968px) {
+            .mobile-game-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 2rem !important;
+            }
+
+            .timeline-dot {
+                left: 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeOutLoading 1s ease 2s forwards;
+        }
+
+        @keyframes fadeOutLoading {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .loading-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink);
+            margin-bottom: 2rem;
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 30px;
+            border: 3px solid var(--neon-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+            animation: loading 2s ease forwards;
+        }
+
+        @keyframes loading {
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-text">LOADING...</div>
+        <div class="loading-bar"></div>
+    </div>
+
+    <div class="retro-bg"></div>
+    <div class="stars" id="stars"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">ONLYAHMAR</div>
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#experience">EXPERIENCE</a></li>
+                <li><a href="#testimonials">TESTIMONIALS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="subtitle">PLAYER 1</div>
+                <h1>AHMAR ALI KHAN</h1>
+                <p>< WEB DEVELOPER / CODER / DIGITAL WARRIOR ></p>
+                <p>SPECIALIZING IN SHOPIFY • REACT • NEXT.JS • FRONT-END MAGIC</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn">START GAME</a>
+                    <a href="#contact" class="btn btn-secondary">CONTACT</a>
+                </div>
+            </div>
+            <div class="arcade-machine">
+                <div class="arcade-screen">
+                    <div class="screen-content">
+                        <h2>SKILL TREE</h2>
+                        <div class="skill-grid">
+                            <div class="skill-box">
+                                <div class="icon">🛒</div>
+                                <h3>SHOPIFY</h3>
+                            </div>
+                            <div class="skill-box">
+                                <div class="icon">⚛️</div>
+                                <h3>REACT</h3>
+                            </div>
+                            <div class="skill-box">
+                                <div class="icon">▲</div>
+                                <h3>NEXT.JS</h3>
+                            </div>
+                            <div class="skill-box">
+                                <div class="icon">💻</div>
+                                <h3>HTML/CSS</h3>
+                            </div>
+                            <div class="skill-box">
+                                <div class="icon">⚡</div>
+                                <h3>JAVASCRIPT</h3>
+                            </div>
+                            <div class="skill-box">
+                                <div class="icon">🎨</div>
+                                <h3>UI/UX</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>PROJECTS</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">🛍️</div>
+                <div class="project-content">
+                    <h3>E-COMMERCE PLATFORM</h3>
+                    <p>FULLY RESPONSIVE SHOPIFY STORE WITH CUSTOM THEME AND ADVANCED FEATURES</p>
+                    <div class="project-tags">
+                        <span class="tag">SHOPIFY</span>
+                        <span class="tag">LIQUID</span>
+                        <span class="tag">JS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">⚛️</div>
+                <div class="project-content">
+                    <h3>REACT DASHBOARD</h3>
+                    <p>MODERN ADMIN PANEL WITH REAL-TIME DATA AND ANALYTICS</p>
+                    <div class="project-tags">
+                        <span class="tag">REACT</span>
+                        <span class="tag">CHART.JS</span>
+                        <span class="tag">API</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">🚀</div>
+                <div class="project-content">
+                    <h3>NEXT.JS PORTFOLIO</h3>
+                    <p>HIGH-PERFORMANCE SITE WITH SSR AND DYNAMIC CONTENT</p>
+                    <div class="project-tags">
+                        <span class="tag">NEXT.JS</span>
+                        <span class="tag">TYPESCRIPT</span>
+                        <span class="tag">TAILWIND</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">🎨</div>
+                <div class="project-content">
+                    <h3>BRAND WEBSITE</h3>
+                    <p>CREATIVE LANDING PAGE WITH SMOOTH ANIMATIONS</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">GSAP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>EXPERIENCE</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>SENIOR SHOPIFY DEVELOPER</h3>
+                    <p class="date">2023 - PRESENT</p>
+                    <p>LEADING E-COMMERCE PROJECTS AND DEVELOPING CUSTOM SHOPIFY THEMES FOR ENTERPRISE CLIENTS</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>FRONT-END DEVELOPER</h3>
+                    <p class="date">2021 - 2023</p>
+                    <p>BUILT RESPONSIVE WEB APPS USING REACT AND NEXT.JS WITH FOCUS ON PERFORMANCE</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>WEB DEVELOPER</h3>
+                    <p class="date">2019 - 2021</p>
+                    <p>CREATED CUSTOM WEBSITES USING HTML CSS AND JAVASCRIPT FOR VARIOUS CLIENTS</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>TESTIMONIALS</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar">JS</div>
+                    <div>
+                        <h4>JOHN SMITH</h4>
+                        <p>CEO TECHSTART</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p>AHMAR DELIVERED AN EXCEPTIONAL SHOPIFY STORE THAT EXCEEDED OUR EXPECTATIONS HIS TECHNICAL EXPERTISE IS OUTSTANDING</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar">SD</div>
+                    <div>
+                        <h4>SARAH DAVIS</h4>
+                        <p>FOUNDER FASHION HUB</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p>WORKING WITH AHMAR WAS A GAME CHANGER THE WEBSITE IS FAST BEAUTIFUL AND CONVERTS AMAZINGLY WELL</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar">MJ</div>
+                    <div>
+                        <h4>MICHAEL JOHNSON</h4>
+                        <p>CTO DIGITAL AGENCY</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p>INCREDIBLE DEVELOPER AHMARS REACT EXPERTISE HELPED US BUILD A COMPLEX DASHBOARD OUR CLIENTS LOVE</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>CONTACT</h2>
+        <div class="contact-grid">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>NAME</label>
+                    <input type="text" placeholder="ENTER YOUR NAME" required>
+                </div>
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input type="email" placeholder="YOUR@EMAIL.COM" required>
+                </div>
+                <div class="form-group">
+                    <label>MESSAGE</label>
+                    <textarea rows="5" placeholder="TYPE YOUR MESSAGE HERE..." required></textarea>
+                </div>
+                <button type="submit" class="btn">SEND MESSAGE</button>
+            </form>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h4>EMAIL</h4>
+                        <p>AHMAR@ONLYAHMAR.COM</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <div>
+                        <h4>LINKEDIN</h4>
+                        <p>LINKEDIN.COM/IN/AHMAR</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🐱</div>
+                    <div>
+                        <h4>GITHUB</h4>
+                        <p>GITHUB.COM/ONLYAHMAR</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 ONLYAHMAR • CODED WITH ❤️ • GAME ON</p>
+        <p style="font-size: 0.6rem; margin-top: 1rem; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green); opacity: 0.9; animation: pulse 2s infinite;">
+            PSST... TRY THE SECRET CODE: ↑↑↓↓←→←→BA
+        </p>
+    </footer>
+
+    <!-- Dino Game Modal -->
+    <div class="game-modal" id="gameModal">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="game-title">DINO RUNNER</div>
+                <button class="close-game" onclick="closeGame()">CLOSE [X]</button>
+            </div>
+            <canvas id="gameCanvas"></canvas>
+            <div class="game-score">SCORE: <span id="score">0</span> | HIGH: <span id="highScore">0</span></div>
+            <div class="game-instructions">PRESS SPACE • CLICK • TAP TO JUMP</div>
+        </div>
+    </div>
+
+    <!-- Mobile Game Button -->
+    <button class="mobile-game-btn" onclick="openGame()" title="Play Game">
+        🎮
+    </button>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Cursor trail effect
+        let lastTrailTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTrailTime > 50) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = e.pageX + 'px';
+                trail.style.top = e.pageY + 'px';
+                document.body.appendChild(trail);
+                
+                setTimeout(() => trail.remove(), 500);
+                lastTrailTime = now;
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('MESSAGE SENT! THANKS FOR REACHING OUT!');
+            e.target.reset();
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .timeline-item, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Konami code easter egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    const gameOver = document.createElement('div');
+                    gameOver.className = 'game-over';
+                    gameOver.textContent = 'CHEAT CODE ACTIVATED!';
+                    document.body.appendChild(gameOver);
+                    gameOver.style.opacity = '1';
+                    setTimeout(() => {
+                        gameOver.style.opacity = '0';
+                        setTimeout(() => {
+                            gameOver.remove();
+                            openGame();
+                        }, 500);
+                    }, 1500);
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Dino Game
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const modal = document.getElementById('gameModal');
+        
+        let gameRunning = false;
+        let score = 0;
+        let highScore = parseInt(localStorage.getItem('dinoHighScore')) || 0;
+        let gameSpeed = 6;
+        let gravity = 0.8;
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = 400;
+        }
+
+        const dino = {
+            x: 80,
+            y: 0,
+            width: 44,
+            height: 47,
+            velocityY: 0,
+            jumpStrength: 15,
+            isJumping: false,
+            frame: 0,
+            
+            draw() {
+                const groundY = canvas.height - 30;
+                const dinoY = groundY - this.height - 15 - this.y;
+                
+                ctx.fillStyle = '#FF006E';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#FF006E';
+                
+                // Pixel perfect dino
+                const pixels = [
+                    [0,0,0,0,1,1,1,1,1,1,0,0],
+                    [0,0,0,1,1,1,1,1,1,1,1,0],
+                    [0,0,0,1,1,1,1,1,1,1,1,1],
+                    [0,0,0,1,1,1,1,1,1,1,1,1],
+                    [0,0,0,1,1,1,1,1,1,1,1,1],
+                    [0,0,0,1,1,1,2,2,1,1,1,0],
+                    [0,0,0,1,1,1,1,1,1,1,1,0],
+                    [0,0,1,1,1,1,1,1,1,1,1,0],
+                    [1,1,1,1,1,1,1,1,1,1,0,0],
+                    [0,1,1,1,1,1,1,1,1,1,1,0],
+                    [0,0,1,1,1,1,1,1,1,1,1,0],
+                    [0,0,0,1,1,1,1,1,1,1,1,0],
+                    [0,0,0,0,1,1,1,1,1,1,0,0],
+                    [0,0,0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,1,1,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0,0,0,1,1,0]
+                ];
+                
+                const pixelSize = 3;
+                pixels.forEach((row, rowIdx) => {
+                    row.forEach((pixel, colIdx) => {
+                        if (pixel === 1) {
+                            ctx.fillStyle = '#FF006E';
+                            ctx.fillRect(
+                                this.x + colIdx * pixelSize, 
+                                dinoY + rowIdx * pixelSize, 
+                                pixelSize, 
+                                pixelSize
+                            );
+                        } else if (pixel === 2) {
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fillRect(
+                                this.x + colIdx * pixelSize, 
+                                dinoY + rowIdx * pixelSize, 
+                                pixelSize, 
+                                pixelSize
+                            );
+                        }
+                    });
+                });
+                
+                // Animated legs
+                const legFrame = Math.floor(this.frame / 6) % 2;
+                ctx.fillStyle = '#FF006E';
+                
+                if (!this.isJumping && gameRunning) {
+                    if (legFrame === 0) {
+                        ctx.fillRect(this.x + 6, dinoY + 45, 9, 15);
+                        ctx.fillRect(this.x + 21, dinoY + 45, 9, 15);
+                    } else {
+                        ctx.fillRect(this.x + 21, dinoY + 45, 9, 15);
+                        ctx.fillRect(this.x + 6, dinoY + 45, 9, 15);
+                    }
+                } else {
+                    ctx.fillRect(this.x + 9, dinoY + 45, 9, 15);
+                    ctx.fillRect(this.x + 18, dinoY + 45, 9, 15);
+                }
+                
+                ctx.shadowBlur = 0;
+                if (gameRunning) this.frame++;
+            },
+            
+            jump() {
+                if (!this.isJumping) {
+                    this.velocityY = -this.jumpStrength;
+                    this.isJumping = true;
+                }
+            },
+            
+            update() {
+                if (this.isJumping) {
+                    this.velocityY += gravity;
+                    this.y += this.velocityY;
+                    
+                    if (this.y <= 0) {
+                        this.y = 0;
+                        this.velocityY = 0;
+                        this.isJumping = false;
+                    }
+                }
+            },
+            
+            reset() {
+                this.y = 0;
+                this.velocityY = 0;
+                this.isJumping = false;
+                this.frame = 0;
+            }
+        };
+
+        class Obstacle {
+            constructor() {
+                this.type = Math.random() > 0.6 ? 'cactus' : 'pterodactyl';
+                if (this.type === 'cactus') {
+                    this.width = 24;
+                    this.height = 45;
+                    this.y = 0;
+                } else {
+                    this.width = 46;
+                    this.height = 30;
+                    this.y = 30 + Math.random() * 40; // Flying height
+                }
+                this.x = canvas.width;
+                this.colors = ['#8B00FF', '#00F5FF', '#39FF14'];
+                this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+                this.frame = 0;
+            }
+            
+            draw() {
+                const groundY = canvas.height - 30;
+                const obstacleY = this.type === 'cactus' ? 
+                    groundY - this.height : 
+                    groundY - this.height - this.y;
+                
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = this.color;
+                
+                if (this.type === 'cactus') {
+                    // Pixelated cactus
+                    const cactusPixels = [
+                        [0,0,1,1,1,1,0,0],
+                        [0,1,1,1,1,1,1,0],
+                        [1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0],
+                        [1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0],
+                        [0,0,1,1,1,1,0,0]
+                    ];
+                    
+                    const pixelSize = 3;
+                    cactusPixels.forEach((row, y) => {
+                        row.forEach((pixel, x) => {
+                            if (pixel === 1) {
+                                ctx.fillRect(
+                                    this.x + x * pixelSize,
+                                    obstacleY + y * pixelSize,
+                                    pixelSize,
+                                    pixelSize
+                                );
+                            }
+                        });
+                    });
+                } else {
+                    // Pixelated pterodactyl (flying dino)
+                    const wingFrame = Math.floor(this.frame / 10) % 2;
+                    const pteroPixels = wingFrame === 0 ? [
+                        [0,0,0,0,1,1,1,0,0,0],
+                        [0,0,0,1,1,1,1,1,1,0],
+                        [0,0,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,2,1,1,1,0], // 2 = eye
+                        [1,1,1,1,1,1,1,1,0,0],
+                        [0,1,1,1,1,1,1,0,0,0]
+                    ] : [
+                        [0,0,0,0,1,1,1,0,0,0],
+                        [0,1,1,1,1,1,1,1,1,0],
+                        [1,1,1,1,1,1,1,1,1,1],
+                        [0,0,1,1,1,2,1,1,1,0], // 2 = eye
+                        [0,0,0,1,1,1,1,1,0,0],
+                        [0,0,0,0,1,1,1,0,0,0]
+                    ];
+                    
+                    const pixelSize = 3;
+                    pteroPixels.forEach((row, y) => {
+                        row.forEach((pixel, x) => {
+                            if (pixel === 1) {
+                                ctx.fillStyle = this.color;
+                                ctx.fillRect(
+                                    this.x + x * pixelSize,
+                                    obstacleY + y * pixelSize,
+                                    pixelSize,
+                                    pixelSize
+                                );
+                            } else if (pixel === 2) {
+                                ctx.fillStyle = '#ffffff';
+                                ctx.fillRect(
+                                    this.x + x * pixelSize,
+                                    obstacleY + y * pixelSize,
+                                    pixelSize,
+                                    pixelSize
+                                );
+                            }
+                        });
+                    });
+                }
+                
+                ctx.shadowBlur = 0;
+                this.frame++;
+            }
+            
+            update() {
+                this.x -= gameSpeed;
+            }
+        }
+
+        class Cloud {
+            constructor() {
+                this.x = canvas.width + Math.random() * 200;
+                this.y = Math.random() * 150 + 30;
+                this.width = 60 + Math.random() * 40;
+                this.speed = 1 + Math.random();
+            }
+            
+            draw() {
+                ctx.fillStyle = 'rgba(0, 245, 255, 0.2)';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#00F5FF';
+                
+                // Cloud parts
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 15, 0, Math.PI * 2);
+                ctx.arc(this.x + 20, this.y, 20, 0, Math.PI * 2);
+                ctx.arc(this.x + 40, this.y, 15, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.shadowBlur = 0;
+            }
+            
+            update() {
+                this.x -= this.speed;
+                if (this.x + this.width < 0) {
+                    this.x = canvas.width + Math.random() * 200;
+                    this.y = Math.random() * 150 + 30;
+                }
+            }
+        }
+
+        let obstacles = [];
+        let clouds = [];
+        let frameCount = 0;
+        let obstacleFrequency = 90;
+
+        // Initialize clouds
+        for (let i = 0; i < 5; i++) {
+            clouds.push(new Cloud());
+        }
+
+        function spawnObstacle() {
+            obstacles.push(new Obstacle());
+        }
+
+        function checkCollision(dino, obstacle) {
+            const groundY = canvas.height - 30;
+            const dinoBottom = groundY;
+            const dinoTop = groundY - dino.height - 15 - dino.y;
+            const dinoLeft = dino.x + 8;
+            const dinoRight = dino.x + dino.width - 8;
+            
+            let obstacleTop, obstacleBottom, obstacleLeft, obstacleRight;
+            
+            if (obstacle.type === 'cactus') {
+                obstacleTop = groundY - obstacle.height;
+                obstacleBottom = groundY;
+                obstacleLeft = obstacle.x + 6;
+                obstacleRight = obstacle.x + obstacle.width - 6;
+            } else {
+                obstacleTop = groundY - obstacle.height - obstacle.y;
+                obstacleBottom = obstacleTop + obstacle.height;
+                obstacleLeft = obstacle.x + 8;
+                obstacleRight = obstacle.x + obstacle.width - 8;
+            }
+            
+            return !(dinoRight < obstacleLeft || 
+                    dinoLeft > obstacleRight || 
+                    dinoTop > obstacleBottom || 
+                    dinoBottom < obstacleTop);
+        }
+
+        function drawGround() {
+            const groundY = canvas.height - 30;
+            
+            // Ground line
+            ctx.strokeStyle = '#39FF14';
+            ctx.lineWidth = 4;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#39FF14';
+            ctx.beginPath();
+            ctx.moveTo(0, groundY);
+            ctx.lineTo(canvas.width, groundY);
+            ctx.stroke();
+            
+            // Moving ground pattern
+            ctx.fillStyle = 'rgba(57, 255, 20, 0.3)';
+            const groundOffset = (frameCount * gameSpeed) % 40;
+            for (let i = -groundOffset; i < canvas.width; i += 40) {
+                ctx.fillRect(i, groundY + 5, 20, 3);
+                ctx.fillRect(i + 25, groundY + 10, 10, 3);
+            }
+            
+            ctx.shadowBlur = 0;
+        }
+
+        function drawBackground() {
+            // Sky gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, 'rgba(139, 0, 255, 0.1)');
+            gradient.addColorStop(1, 'rgba(5, 0, 8, 1)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Stars
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            for (let i = 0; i < 50; i++) {
+                const x = (i * 137 + frameCount * 0.2) % canvas.width;
+                const y = (i * 97) % (canvas.height - 100);
+                ctx.fillRect(x, y, 2, 2);
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = Math.floor(score);
+            document.getElementById('highScore').textContent = highScore;
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            drawBackground();
+            
+            // Update and draw clouds
+            clouds.forEach(cloud => {
+                cloud.update();
+                cloud.draw();
+            });
+            
+            drawGround();
+            
+            dino.update();
+            dino.draw();
+            
+            frameCount++;
+            if (frameCount % obstacleFrequency === 0) {
+                spawnObstacle();
+                obstacleFrequency = Math.max(45, 90 - Math.floor(score / 100));
+            }
+            
+            obstacles.forEach((obstacle, index) => {
+                obstacle.update();
+                obstacle.draw();
+                
+                if (checkCollision(dino, obstacle)) {
+                    gameRunning = false;
+                    if (score > highScore) {
+                        highScore = Math.floor(score);
+                        localStorage.setItem('dinoHighScore', highScore);
+                    }
+                    updateScore();
+                    
+                    // Game over screen
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = '#FF006E';
+                    ctx.shadowBlur = 40;
+                    ctx.shadowColor = '#FF006E';
+                    ctx.font = '40px "Press Start 2P"';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 30);
+                    
+                    ctx.font = '20px "Press Start 2P"';
+                    ctx.fillStyle = '#00F5FF';
+                    ctx.shadowColor = '#00F5FF';
+                    ctx.fillText('SCORE: ' + Math.floor(score), canvas.width / 2, canvas.height / 2 + 20);
+                    
+                    ctx.font = '14px "Press Start 2P"';
+                    ctx.fillStyle = '#39FF14';
+                    ctx.shadowColor = '#39FF14';
+                    ctx.fillText('PRESS SPACE TO RESTART', canvas.width / 2, canvas.height / 2 + 70);
+                    ctx.shadowBlur = 0;
+                    return;
+                }
+                
+                if (obstacle.x + obstacle.width < 0) {
+                    obstacles.splice(index, 1);
+                    score += 10;
+                }
+            });
+            
+            score += 0.15;
+            gameSpeed = 6 + score / 400;
+            updateScore();
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        function startGame() {
+            gameRunning = true;
+            score = 0;
+            gameSpeed = 6;
+            obstacles = [];
+            frameCount = 0;
+            obstacleFrequency = 90;
+            dino.reset();
+            updateScore();
+            gameLoop();
+        }
+
+        function openGame() {
+            modal.classList.add('active');
+            resizeCanvas();
+            updateScore();
+            setTimeout(() => {
+                startGame();
+            }, 100);
+        }
+
+        function closeGame() {
+            modal.classList.remove('active');
+            gameRunning = false;
+            obstacles = [];
+        }
+
+        // Game controls - SIMPLIFIED
+        let jumpPressed = false;
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            
+            if ((e.code === 'Space' || e.code === 'ArrowUp') && !jumpPressed) {
+                e.preventDefault();
+                jumpPressed = true;
+                
+                if (gameRunning) {
+                    dino.jump();
+                } else {
+                    startGame();
+                }
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                jumpPressed = false;
+            }
+        });
+
+        canvas.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (gameRunning) {
+                dino.jump();
+            } else {
+                startGame();
+            }
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (gameRunning) {
+                dino.jump();
+            } else {
+                startGame();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (modal.classList.contains('active')) {
+                resizeCanvas();
+            }
+        });
+    </script>
+</body>
+</html>
