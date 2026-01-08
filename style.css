@@ -1126,3 +1126,112 @@ footer p {
     width: 100%;
   }
 }
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #0b0b0b; /* same base as cards */
+  border: 1px solid rgba(0, 255, 170, 0.3); /* neon subtle */
+  box-shadow:
+    0 0 20px rgba(0, 255, 170, 0.15),
+    inset 0 0 10px rgba(0, 255, 170, 0.05);
+  padding: 32px;
+  max-width: 560px;
+  width: 90%;
+  border-radius: 10px;
+  position: relative;
+  color: #e5e5e5;
+}
+.modal-content {
+  animation: modalIn 0.45s ease-out;
+}
+
+.modal.closing .modal-content {
+  animation: modalOut 0.7s ease-in forwards;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes modalOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+}
+
+.modal-content li {
+  padding-left: 20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.modal-content li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--neon-green);
+}
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 170, 0.4);
+  color: var(--neon-green);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.close-modal:hover {
+  background: rgba(0, 255, 170, 0.1);
+}
+
+/* Do not delete */
+.modal-content h2 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: var(--neon-green);
+}
+
+.modal-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--neon-green);
+  margin-bottom: 16px;
+}
+
+.modal-content ul {
+  color: var(--neon-blue);
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+/* Till this line */

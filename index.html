@@ -11,6 +11,27 @@
     <link rel="stylesheet" href="style.css" />
     <style></style>
   </head>
+  <div id="work-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal">CLOSE</button>
+
+      <h2>What I Do</h2>
+
+      <p>
+        I build and customize production-ready Shopify storefronts and front-end
+        experiences with a focus on clean structure and usability.
+      </p>
+
+      <ul>
+        <li>Shopify theme customization, sections & blocks</li>
+        <li>Liquid-based dynamic storefront development</li>
+        <li>Frontend development (HTML, CSS, JavaScript)</li>
+        <li>WordPress custom websites</li>
+        <li>UI, performance & usability improvements</li>
+      </ul>
+    </div>
+  </div>
+
   <body>
     <div class="loading-screen">
       <div class="loading-text">LOADING...</div>
@@ -41,10 +62,11 @@
           <p>< WEB DEVELOPER / CODER / DIGITAL WARRIOR ></p>
           <p>I craft web apps for a living</p>
           <div class="cta-buttons">
-            <a href="#projects" class="btn">MY WORK</a>
-            <a href="#contact" class="btn btn-secondary">HIRE ME</a>
+            <button class="btn" id="open-work-modal">About Me</button>
+            <a href="#contact" class="btn btn-secondary">Hire Me</a>
           </div>
         </div>
+
         <div class="arcade-machine">
           <div class="arcade-screen">
             <div class="screen-content">

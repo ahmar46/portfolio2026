@@ -395,36 +395,35 @@ function spawnObstacle() {
 }
 
 function checkCollision(dino, obstacle) {
-    const groundY = canvas.height - 30;
+  const groundY = canvas.height - 30;
 
-    // ✅ Correct dino hitbox
-    const dinoTop = groundY - dino.height - 15 - dino.y;
-    const dinoBottom = groundY - dino.y;
-    const dinoLeft = dino.x + 8;
-    const dinoRight = dino.x + dino.width - 8;
+  // ✅ Correct dino hitbox
+  const dinoTop = groundY - dino.height - 15 - dino.y;
+  const dinoBottom = groundY - dino.y;
+  const dinoLeft = dino.x + 8;
+  const dinoRight = dino.x + dino.width - 8;
 
-    let obstacleTop, obstacleBottom, obstacleLeft, obstacleRight;
+  let obstacleTop, obstacleBottom, obstacleLeft, obstacleRight;
 
-    if (obstacle.type === 'cactus') {
-        obstacleTop = groundY - obstacle.height;
-        obstacleBottom = groundY;
-        obstacleLeft = obstacle.x + 6;
-        obstacleRight = obstacle.x + obstacle.width - 6;
-    } else {
-        obstacleTop = groundY - obstacle.height - obstacle.y;
-        obstacleBottom = obstacleTop + obstacle.height;
-        obstacleLeft = obstacle.x + 8;
-        obstacleRight = obstacle.x + obstacle.width - 8;
-    }
+  if (obstacle.type === "cactus") {
+    obstacleTop = groundY - obstacle.height;
+    obstacleBottom = groundY;
+    obstacleLeft = obstacle.x + 6;
+    obstacleRight = obstacle.x + obstacle.width - 6;
+  } else {
+    obstacleTop = groundY - obstacle.height - obstacle.y;
+    obstacleBottom = obstacleTop + obstacle.height;
+    obstacleLeft = obstacle.x + 8;
+    obstacleRight = obstacle.x + obstacle.width - 8;
+  }
 
-    return !(
-        dinoRight < obstacleLeft ||
-        dinoLeft > obstacleRight ||
-        dinoBottom < obstacleTop ||   // ✅ key fix
-        dinoTop > obstacleBottom
-    );
+  return !(
+    dinoRight < obstacleLeft ||
+    dinoLeft > obstacleRight ||
+    dinoBottom < obstacleTop || // ✅ key fix
+    dinoTop > obstacleBottom
+  );
 }
-
 
 function drawGround() {
   const groundY = canvas.height - 30;
@@ -626,24 +625,52 @@ window.addEventListener("resize", () => {
   }
 });
 
+const counters = document.querySelectorAll(".counter");
 
-  const counters = document.querySelectorAll(".counter");
+counters.forEach((counter) => {
+  const target = +counter.getAttribute("data-count");
+  const speed = 200; // smaller = faster
 
-  counters.forEach(counter => {
-    const target = +counter.getAttribute("data-count");
-    const speed = 200; // smaller = faster
+  const updateCount = () => {
+    const current = +counter.innerText;
+    const increment = Math.ceil(target / speed);
 
-    const updateCount = () => {
-      const current = +counter.innerText;
-      const increment = Math.ceil(target / speed);
+    if (current < target) {
+      counter.innerText = current + increment;
+      setTimeout(updateCount, 20);
+    } else {
+      counter.innerText = target.toLocaleString();
+    }
+  };
 
-      if (current < target) {
-        counter.innerText = current + increment;
-        setTimeout(updateCount, 20);
-      } else {
-        counter.innerText = target.toLocaleString();
-      }
-    };
+  updateCount();
+});
 
-    updateCount();
-  });
+const openWorkBtn = document.getElementById("open-work-modal");
+const workModal = document.getElementById("work-modal");
+const closeModalBtn = workModal.querySelector(".close-modal");
+
+openWorkBtn.addEventListener("click", () => {
+  document.body.style.overflow = "hidden";
+  workModal.classList.remove("closing");
+  workModal.classList.add("show");
+});
+
+function closeModal() {
+  workModal.classList.add("closing");
+
+  setTimeout(() => {
+    workModal.classList.remove("show");
+    workModal.classList.remove("closing");
+    document.body.style.overflow = "";
+  }, 280); // must match macClose duration
+}
+
+closeModalBtn.addEventListener("click", closeModal);
+
+workModal.addEventListener("click", (e) => {
+  if (e.target === workModal) {
+    closeModal();
+  }
+});
+
