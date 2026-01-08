@@ -421,6 +421,17 @@ nav .container {
   margin-bottom: 0.5rem;
   filter: drop-shadow(0 0 10px var(--neon-green));
 }
+.icon {
+  width: 28px;
+  height: 28px;
+  display: block;        /* 🔥 fixes baseline issues */
+}
+.skill-box {
+  display: flex;
+  flex-direction: column;   /* or row */
+  align-items: center;      /* 🔥 perfect alignment */
+  gap: 6px;
+}
 
 
 .skill-box h3 {
