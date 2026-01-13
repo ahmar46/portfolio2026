@@ -1247,3 +1247,19 @@ footer p {
 }
 
 /* Till this line */
+
+/* 1. Define the box for the image */
+.project-img {
+  width: 100%;        
+  height: 200px;      /* Adjust this pixel value to match the height you see in your design */
+  overflow: hidden;   /* CRITICAL: Cuts off anything that tries to spill out */
+  border-radius: 12px 12px 0 0; /* Optional: Matches the top corners of your card */
+}
+
+/* 2. Force the image to stay inside that box */
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Ensures image fills the area without stretching */
+  display: block;     /* Removes bottom gap */
+}
