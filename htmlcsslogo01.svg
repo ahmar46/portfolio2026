@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 256" fill="none">
+  <!-- HTML5 -->
+  <g transform="translate(0,0)">
+    <path fill="#E34F26" d="M32 32h192l-16 176-80 24-80-24L32 32Z"></path>
+    <path fill="#EF652A" d="M128 208l64-18 14-154H128v172Z"></path>
+    <path fill="#FFF" d="M128 96H80l2 24h46V96Zm0 48H96l2 24 30 8V144Zm0 48-52-14-2-24h54v38Z"></path>
+    <path fill="#EBEBEB" d="M128 96v24h44l-4 48-40 12v38l80-24 8-96H128Z"></path>
+  </g>
+
+  <!-- CSS3 -->
+  <g transform="translate(256,0)">
+    <path fill="#1572B6" d="M32 32h192l-16 176-80 24-80-24L32 32Z"></path>
+    <path fill="#33A9DC" d="M128 208l64-18 14-154H128v172Z"></path>
+    <path fill="#FFF" d="M128 96H80l2 24h46V96Zm0 48H96l2 24 30 8V144Z"></path>
+    <path fill="#EBEBEB" d="M128 96v24h44l-4 48-40 12v38l80-24 8-96H128Z"></path>
+  </g>
+</svg>

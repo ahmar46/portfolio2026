@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Dark background -->
+  <rect width="256" height="256" rx="24" fill="#111111"></rect>
+
+  <!-- Figma logo -->
+  <!-- Top red -->
+  <path fill="#F24E1E" d="M128 32c26.5 0 48 21.5 48 48s-21.5 48-48 48H96V80c0-26.5 21.5-48 48-48Z"></path>
+
+  <!-- Top purple -->
+  <path fill="#A259FF" d="M96 128h32c26.5 0 48 21.5 48 48s-21.5 48-48 48H96V128Z"></path>
+
+  <!-- Middle blue -->
+  <path fill="#1ABCFE" d="M128 128c26.5 0 48-21.5 48-48S154.5 32 128 32 80 53.5 80 80s21.5 48 48 48Z"></path>
+
+  <!-- Bottom green -->
+  <path fill="#0ACF83" d="M96 224h32c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48v-48Z" transform="translate(0 -64)"></path>
+
+  <!-- Bottom pink -->
+  <path fill="#FF7262" d="M96 32h32c26.5 0 48 21.5 48 48s-21.5 48-48 48H96V32Z"></path>
+</svg>

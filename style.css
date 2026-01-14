@@ -1274,3 +1274,25 @@ footer p {
   color: #00ff00; /* Change this to your preferred neon green/pink color */
   text-decoration: underline; /* Optional: adds underline only on hover */
 }
+.skill-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* ✅ centers horizontally */
+  justify-content: center; /* ✅ centers vertically */
+  text-align: center;
+}
+
+.skill-box .icon {
+  width: 48px;             /* ✅ controls icon size */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-box .icon img {
+  width: 100%;             /* 🔥 fits inside icon box */
+  height: 100%;
+  display: block;          /* 🔥 removes baseline gap */
+  object-fit: contain;
+}

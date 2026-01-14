@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 384">
+  <!-- Top red -->
+  <path fill="#F24E1E" d="M128 0c35.3 0 64 28.7 64 64s-28.7 64-64 64H64V64C64 28.7 92.7 0 128 0Z"></path>
+
+  <!-- Top purple -->
+  <path fill="#A259FF" d="M64 128h64c35.3 0 64 28.7 64 64s-28.7 64-64 64H64V128Z"></path>
+
+  <!-- Middle blue -->
+  <path fill="#1ABCFE" d="M128 128c35.3 0 64-28.7 64-64S163.3 0 128 0 64 28.7 64 64s28.7 64 64 64Z"></path>
+
+  <!-- Bottom green -->
+  <path fill="#0ACF83" d="M64 256h64c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64V256Z"></path>
+
+  <!-- Bottom pink -->
+  <path fill="#FF7262" d="M64 0h64c35.3 0 64 28.7 64 64s-28.7 64-64 64H64V0Z"></path>
+</svg>
