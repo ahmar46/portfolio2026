@@ -37,11 +37,11 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 });
 
 // Form submission
-document.querySelector(".contact-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert("MESSAGE SENT! THANKS FOR REACHING OUT!");
-  e.target.reset();
-});
+// document.querySelector(".contact-form").addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   alert("MESSAGE SENT! THANKS FOR REACHING OUT!");
+//   e.target.reset();
+// });
 
 // Scroll reveal animation
 const observerOptions = {
@@ -673,25 +673,4 @@ workModal.addEventListener("click", (e) => {
     closeModal();
   }
 });
-
-const form = document.getElementById("contact-form");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  const payload = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message"),
-  };
-
-  await fetch("https://script.google.com/macros/s/AKfycbzFMd8Iv2gfz6cR7w3J1z92AcuWuQKzR98L8TEtWp0iAEK-0ytRCelhJEKjmExSKXIt/exechttps://script.google.com/macros/s/AKfycbzFMd8Iv2gfz6cR7w3J1z92AcuWuQKzR98L8TEtWp0iAEK-0ytRCelhJEKjmExSKXIt/exec", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
-
-  alert("Message sent successfully!");
-  form.reset();
-});
+// End of script.js
