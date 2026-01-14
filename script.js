@@ -687,7 +687,7 @@ form.addEventListener("submit", async (e) => {
     message: formData.get("message"),
   };
 
-  await fetch("https://script.google.com/macros/s/AKfycbzFMd8Iv2gfz6cR7w3J1z92AcuWuQKzR98L8TEtWp0iAEK-0ytRCelhJEKjmExSKXIt/exec", {
+  await fetch("https://script.google.com/macros/s/AKfycbzFMd8Iv2gfz6cR7w3J1z92AcuWuQKzR98L8TEtWp0iAEK-0ytRCelhJEKjmExSKXIt/exechttps://script.google.com/macros/s/AKfycbzFMd8Iv2gfz6cR7w3J1z92AcuWuQKzR98L8TEtWp0iAEK-0ytRCelhJEKjmExSKXIt/exec", {
     method: "POST",
     body: JSON.stringify(payload),
   });
